@@ -1,2 +1,8 @@
-# UofT Engineering Thesis: LLM Privacy Safe Guards Research
-This repository contains an on going research concerning LLM privacy leakage and preventation. The repo will continually be updated as more work gets completeled.
+<div align="center">
+
+# LLM Privacy Safe Guards Research
+## UofT Engineering Science Machine Intelligence Thesis
+
+</div>
+
+This repository contains an ongoing research concerning LLM privacy leakage and prevention. The repo will continually be updated as more work gets completed.
