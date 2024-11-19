@@ -2,9 +2,8 @@
 
 
 <div align="center">
-
-# LLM Privacy Safe Guards Research
-## UofT Engineering Science Machine Intelligence Thesis
+  
+# UofT Engineering Science Machine Intelligence Thesis
 
 </div>
 
