@@ -59,12 +59,12 @@ if __name__ == "__main__":
 
     #Parameters:
     data_link = r"C:\Users\tomng\Desktop\Training_Data_Ordered"
-    med_3_save_link = r"C:\Users\tomng\Desktop\Med3_map"
+    med_3_save_link = r"C:\Users\tomng\Desktop\med3_map"
 
     #Get file links and generate excel file
-    existing_files = gf.get_all_files(med_3_save_link)
-    files = gf.get_file_paths(data_link)
-    iterate_through_file(files,med_3_save_link, existing_files)
+    # existing_files = gf.get_all_files(med_3_save_link)
+    # files = gf.get_file_paths(data_link)
+    # iterate_through_file(files,med_3_save_link, existing_files)
 
     print("Done creating .json files")
     hashmap = gf.load_hashmaps_from_folder(med_3_save_link)
