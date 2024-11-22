@@ -3,6 +3,8 @@ import pandas as pd
 import openpyxl
 import matplotlib.pyplot as plt
 import json
+import numpy as np
+from scipy.stats import linregress
 
 import general_functions as gf
 
@@ -30,9 +32,9 @@ def plot_histograms_from_multiple_hashmaps(hashmaps, titles):
     for idx, hashmap in enumerate(hashmaps):
         data = [value for value in hashmap.values()]
         axs[idx].hist(data, bins=5000, edgecolor='black', log=True)
-        axs[idx].set_title(titles[idx])
-        axs[idx].set_xlabel("Different Words In Training Data")
-        axs[idx].set_ylabel("Frequency")
+        axs[idx].set_title(titles[idx], fontsize = 8)
+        axs[idx].set_xlabel("Word Frequency in Dataset", fontsize = 8)
+        axs[idx].set_ylabel("Frequency of Word Frequencies", fontsize = 8)
 
     plt.tight_layout()
     plt.show()
@@ -69,6 +71,36 @@ def load_hashmaps_from_excels(folder_path):
     
     return hashmap_
 
+def plot_zipf(hashmap, titles):
+
+    num_plots = len(hashmap)
+    fig, axs = plt.subplots(1, num_plots, figsize=(6 * num_plots, 4))
+
+    # If only one subplot, make axs iterable
+    if num_plots == 1:
+        axs = [axs]
+
+    y = {1:[], 2:[], 3:[]}
+    x = {1:[], 2:[], 3:[]}
+    for i in hashmap:
+        # Create a list of keys sorted by their values in descending order
+        sorted_keys = sorted(hashmap[i], key=lambda k: hashmap[i][k], reverse=True)
+        for z in sorted_keys:
+            y[i].append(hashmap[i][z])
+        x[i] = list(range(1, len(y[i]) + 1))
+
+    for idx, hashmap in enumerate(hashmaps):
+
+        axs[idx].plot(x[idx + 1], y[idx + 1], label='Log-Scaled Line')
+        axs[idx].set_xscale('log')
+        axs[idx].set_yscale('log')
+        axs[idx].set_xlabel('log rank')
+        axs[idx].set_ylabel('log frequency')
+        axs[idx].set_title(titles[idx + 1])
+
+    plt.tight_layout()
+    plt.show()
+
 if __name__ == "__main__":
 
     title_ = {
@@ -101,6 +133,21 @@ if __name__ == "__main__":
         with open(hashmaps[method], "w", encoding="utf-8") as file:
             json.dump(hashmap, file)
 
+    #-------------------------Plot Zipf's Ranking Curve---------------------------------#
+
+    plot_zipf_ = False
+    if plot_zipf_:
+        hashmap_load = {}
+        titles = {}
+        for i in hashmaps:
+            with open(hashmaps[i], 'r', encoding='utf-8') as file:
+                hashmap_final = json.load(file)
+            title = "Zipf Curve of " + title_[i] + " method"
+            hashmap_load[i] = hashmap_final
+            titles[i] = title
+
+        plot_zipf(hashmap_load, titles)
+
     #------------------Plot the Distributions of Training Data--------------------------#
 
     plot = True
@@ -115,3 +162,4 @@ if __name__ == "__main__":
             titles.append(title)
 
         plot_histograms_from_multiple_hashmaps(hashmap_list,titles)
+
