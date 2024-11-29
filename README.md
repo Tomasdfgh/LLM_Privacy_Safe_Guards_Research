@@ -13,7 +13,7 @@ This research project is still ongoing. The repository will continually be updat
 The graphs below show the training data distribution for all three methods that was used to split the data set into its k-eidetic memories. The x axis of each subplot shows the number of times a word appear in a training data point, which means that the left leaning datum on the x axis are words that does not appear frequently within a dataset. The Frequency of each subplot (the y axis) shows how common are words that appear in x amount of times in the training data are. From this graph, it becomes obvious there is a large amount of words that appear only once or twice within the dataset. While it is guaranteed that there are some amount of noise within the split from words being split incorrectly, the amount of words that appear in only a small subset of the training data point is concerning as it could means the methods that I am splitting the words are incorrect. To validate the methods that I am using, I have found the Zipf curve for each method. The results of which are displayed in the next section. 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/eb07a2df-c865-4838-83aa-68638de7f356" alt="All Split Method Distribution" width="950">
+  <img src="https://github.com/user-attachments/assets/856e6a19-b3b8-4df5-be9f-4a2871aa6316" alt="All Split Method Distribution" width="950">
   <p><em>Figure 1: Distribution of training data across the three data splits methods: Hard Coded Simple Split, NLTK Vanilla Encoder, and Deep Semantics Splitting.</em></p>
 </div>
 
